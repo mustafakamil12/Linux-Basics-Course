@@ -1,0 +1,448 @@
+# to enable ssh service in ubuntu
+> sudo apt-get install sshpass -y
+> sudo apt-get install openssh-server
+> sudo systemctl enable ssh
+> sudo systemctl start ssh
+
+# to print working directory
+> pwd
+
+# to list what in the current directory
+> ls
+
+# to list what in a directory
+> ls directory_name/
+
+# to change the directory
+> cd directory_name/
+
+# to list root directory
+> ls /
+
+# to change your shell to bash
+> bash
+
+# to clear any stuff in the terminal or shell or command line
+> clear
+
+# to read the path below
+root  home / user_name --> where the first slash is the root
+/     home / user_name
+
+# to go up directory close to the root
+> cd ..
+
+# u can change directory to a specific one using the path
+> cd /home/user_name/ 
+
+# to list all files in the directory 
+> ls -a  <-- where -a is an example for a flag or an option
+> ls -alh <-- where h is human readable.
+
+# in the linux any file start with (.) that's mean it's hidden
+
+# ~ or telda is just a short for root(/)home/user_name
+
+# if u wanna to change directory to ur home from any where
+> cd ~
+
+# to go back to your home folder from anywhere
+> cd   <-- without any argument
+
+# if u wanna to back couple directories up 
+> cd ../..
+
+# to crearte emapty file 
+> touch <file_name>
+
+# to read content of a file concatenation sequentially
+> cat <file_name>
+
+# to reat content of many files at the sametime
+> cat <path/file_name> <path/file_name> ...etc
+
+# to make a directory
+> mkdir <dir_name>
+
+# to make nested directories even if they are not been created
+> mkdir -p <dir1/dir2/..etc>
+
+# to move file or to rename file
+> mv <source file_name> <destenation path and new_file_name if required>
+
+# to remove file
+> rm <file_name> 
+
+
+# to remove directory if the directory empty
+> rmdir <dir_name>   
+
+# to remove directory if the directory not empty
+> rm -r <dir_name>  <-- where r = recursive :)
+
+# if u need help about any command u can check the manual
+> man <command_name>
+
+# if u need to get information about who's loging to the machine
+> w
+
+# for less information from the command above we can use (include the login time)
+> who
+
+# xdm mean graphical diplay manager
+
+# TTY :0 <-- mean I'm sitting on localhost
+
+# to get information about ur machine like cpu memory etc
+> top
+
+# if we need more details we can use htop, but we need to install it first
+> htop
+
+# to see what happning in the network u can use
+> sudo netstat -tupln    ==> t: tcp u: udp p: program attached l: listening n: numric
+
+# in case we need to update ubuntu
+> sudo apt-get update
+
+# to copy file 
+> cp <source path/file> <destenation/file>
+> cp somefolder/test.txt ./testcopy.txt    <--- where the dot mean this folder and u can use it or not it's optional in this case.
+
+# single dot mean this directory (.) duble dots mean the upper directory (..)
+
+# u need to learn 2 text editor at least 
+ 1. vi
+ 2. nano
+
+# The most important features that make Linux so powerfull is the pipes and redirection for ip/op
+
+# let's talk about redirection first
+
+# any programs running by linux kernl have 3 channels
+ 1. STDIN ---> 0
+ 2. STDOUT ---> 1
+ 3. STDERR ---> 2
+
+# if u wanna to print anything on the screen just use 
+> echo "some string here"
+
+# now to redirect the output from the command above to a file for example 
+> echo "some string" 1> file_name.***
+# or
+> echo "some string" > file_name.***
+
+# single > use to overwrite the file content.
+
+# double >> use to append to a file content.
+> echo "some string" >> file_name.***
+
+# using > or >> that's mean STDOUT, mean normal output, it will never redirect the error output, if u need to capture or redirect
+# the error use (2>) for example: 
+> ls -lah file_name_not_exist 2> errorfile
+> ls -alh tena.txt 2> yoyo.txt  <-- wehre tena.txt is not available and yoyo.txt is exist.
+
+# another example for redirection: 
+> echo "This is message text" > message.txt
+> mail -s "email subject" <email_address> < message.txt
+
+> sudo less /var/mail/$(whoami) <-- to read email on local
+
+
+# btw the direction of input or out put can be detrmine using (< or >)
+
+# let's talk about pipes now
+
+# to view all system processes by using process status ps
+
+> ps aux  <-- where a -> all processes, u -> convert user id to user name, x -> show me processes even they are not attached to 
+																				terminal (tty)
+# now u'll see the page is full with information, so we can resolve this by using the pipe
+> ps aux | less
+
+# what happen above is like this
+ - it's take the ouput from the output channel 1 -- hocked up to (|) --> input channel 0
+
+# u can use multi pipes to filter the result as u need 
+> ps aux | uniq | sort | grep "something to search"																		
+
+# another useful thing is to use logic to control program executing sequence
+> prog1 && prog2 <-- This mean if program1 run successfully that's mean it's result True, Then run prog2,
+
+# in case of prog1 is not working or failed that's mean it's result False, and so prog2 will not be running :)
+> ls somefile.txt && echo "astonishing success"
+
+# now if u have a file contain multi lines and these lines contain a delimiter like (:)
+> cat <file_name> | cut -d: -f2
+# it will return the second part after delimiter.
+
+# another option really useful it's (sort)
+> cat <file_name> | sort -bf   <-- where b is ignoring lead white space and f mean incase sensitve
+
+# if we have a dublicate within a file, u can use uniq to print a uniqu line 
+> cat <file_name> | uniq
+
+# u can use word count <wc> to get some information about the file like # of lines ..etc
+> wc <file_name>
+
+# grep is a searching, finding and filtiring tool
+> cat <file_name> | grep "something to search or filter"
+
+# u can use grep to look for a word or patteren in all files in a directory
+> grep something ./*   <-- this line mean search for the word something in all files in this directory.
+
+# we can also make linux don't show the dublicate as well remove any unwanted thing on the lines show in the screen
+> grep someone ./* | uniq | cut -d: -f1
+
+# if we need to look for a word or a pattern in all subdirectories
+> grep -r ISA ./* | cut -d: -f1  <-- where I'm looking for ISA word in the main directory and subdirctories.
+
+# some of the system admin tasks
+ 1. update system, u will not be allowd to do so unless u have root power permissions
+	> apt-get update
+	> sudo apt-get update   <-- where sudo is super user do :)
+
+ 2. upgrade system to latest release
+ 	> sudo apt-get upgrade
+
+ 3. install new application or software
+ 	> sudo apt-get install <software_name>
+
+ 4. search for application or software
+ 	> sudo apt-cache search <software_name>
+
+ 	# The apt-cache command line tool is used for searching apt software package cache. In simple words, this tool is used to search software packages, collects information of packages and also used to search for what available packages are ready for installation on Debian or Ubuntu based systems. 
+
+ 5. u can install multi software and programs at the sametime
+ 	> sudo apt-get install prog1 software2 prog3 ...etc
+
+ 6. to get a list of all servers that we are dealing with when we install or update software
+ 	> cat /etc/apt/sources.list
+
+ 7. to remove stuff that been installed already on the system
+ 	> sudo apt-get remove <prog or software>
+
+ 8. if the application or the software from a special repo not in the apt-get we can use the recommended commands in their website
+ 	> sudo apt-get install --no-install-recommend <-- where this option mean only the main dependencies
+
+# let's talk about file permission, if u use ls -l (where -l mean long) u can see something like this
+drwxrwxr-x  ==> it will be read like this    (d) 		(rwx)     (rwx)       (r-x)
+																			 file-type		owner  owner-group   other-user
+																			 d: directory
+																			 -: file
+																			 l: link
+
+# keep in mind any new file created it will be redable by other users by default, as admin u need to disable this
+# to change file mod permission use 
+> chmod <permission> file
+
+# to change folder mod permission
+> chmod <permission> folder
+# OR
+> chmod -R <permission> folder   <-- this will be reflected on the folder and all files inside it :)
+
+# for each of: owner, owner group and other user, we using 3 chars, r w x ==> 1 1 1 so these binary values vary from 
+0 0 0 --> 1 1 1  :)
+
+# the original mode for a file is (664)
+
+# if u tiered from changing file permission mode everytime that u create file, u need to 
+ 1. edit the file below:
+ 	> nano /etc/login.defs
+
+ 2. search for umask which mean user mask, it's actually a mask put over the file permission
+ 	it's job is to subtract it's value from the file permission value.
+
+ 3. the default value of umask is 022
+
+ 4. u can change owner and group as well using 
+ 	> chown owner:group <file_name or dir_name>
+
+# ---------------------------------------------------------- Access Control --------------------------------------------------
+
+# everything in linux is object, each object have owner
+
+# if u change directory to the root, and submit the command <ls -l> u can see that all directories there owned by root and the 
+  group is root as well
+
+# in contrast if u change directory to ur home directory u can see all directories there owned by u and ur group
+
+# when u create a user, a group will be generated automatically with same name.
+
+# easly u can find who u are by using 
+> whoami
+
+# or for more details u can use id, where it give u a lot of information like user, group and other groups user member in
+> id
+
+# to find out what's make a user in the linux system. actually there're 3 files should we look into
+
+# to change from current user to the root
+> sudo -i
+
+# to exit from root user 
+> exit
+
+# the 3 files that responsible for user
+ 1. /etc/passwd
+ 	> tail /etc/passwd
+
+ 	# from the command above u will get a lot of information like
+ 	mustafa:   x    :1000:1000,mustafa,,,:/home/mustafa:  /bin/bash
+ 	user    password uid  gid  user info  home directory  default shell
+
+ 	# to see all users in the system
+ 	> cat /etc/passwd
+
+ 	# and get the total lines by using word count command:da
+ 	> cat /etc/passwd | wc -l
+
+ 2. /etc/shadow
+ 	> tail /etc/shadow
+
+ 	# in this file we can see the hash password :) 
+ 	
+ 	# The /etc/shadow file contains one entry per line, each representing a user account.
+
+ 	# Typically, the first line describes the root user, followed by the system and normal user accounts. New entries are appended 
+ 	  at the end of the file.
+
+ 	# Each line of the /etc/shadow file contains nine comma-separated fields:
+
+ 	mustafa:$6$ZvyX59HxR8CoBxfg$1BgfZZv0cdmxgOVCPkr1rf3RQeXljJswa1XAKYrmlSlClAtVLKo98nHOBrbZUHn.6UI/r553wmX8NdrGsyr1n1:18708:0:99999:7:::
+ 	
+ 	mark:$6$.n.:17736:0:99999:7:::
+	[--] [----] [---] - [---] ----
+	|      |      |   |   |   |||+-----------> 9. Unused
+	|      |      |   |   |   ||+------------> 8. Expiration date
+	|      |      |   |   |   |+-------------> 7. Inactivity period
+	|      |      |   |   |   +--------------> 6. Warning period
+	|      |      |   |   +------------------> 5. Maximum password age
+	|      |      |   +----------------------> 4. Minimum password age
+	|      |      +--------------------------> 3. Last password change
+	|      +---------------------------------> 2. Encrypted Password
+	+----------------------------------------> 1. Username
+
+
+    1. Username. The string you type when you log into the system. The user account that exist on the system.
+
+	2. Encrypted Password. The password is using the $type$salt$hashed format. $type is the method cryptographic hash algorithm and can have the following values:
+
+	$1$ – MD5
+	$2a$ – Blowfish
+	$2y$ – Eksblowfish
+	$5$ – SHA-256
+	$6$ – SHA-512
+	
+	If the password field contains an asterisk (*) or exclamation mark (!), the user will not be able to login to the system using password authentication. Other login methods like key-based authentication or switching to the user are still allowed.
+
+	to disable any account just put (!) before the encrypted password :)
+
+	In older Linux systems, the user’s encrypted password was stored in the /etc/passwd file.
+
+	3. Last password change. This is the date when the password was last changed. The number of days is counted since January 1, 1970 (epoch date).
+
+	4. Minimum password age. The number of days that must pass before the user password can be changed. Typically it is set to zero, which means that there is no minimum password age.
+
+	5. Maximum password age. The number of days after the user password must be changed. By default, this number is set to 99999.
+
+	6. Warning period. The number of days before the password expires during which the user is warned that the password must be changed.
+
+	7. Inactivity period. The number of days after the user password expires before the user account is disabled. Typically this field is empty.
+
+	8. Expiration date. The date when the account was disabled. It is represented as an epoch date.
+
+	9. Unused. This field is ignored. It is reserved for future use.
+
+	The /etc/shadow file should not be edited by hand unless you know what you are doing. Always use a command that is designed for the purpose. For example, to change a user password, use the passwd command, and to change the password aging information, use the chage command.
+
+	# Example:
+
+	linuxize:$6$zHvrJMa5Y690smbQ$z5zdL...:18009:0:120:7:14::
+
+	The entry above contains information about the user “linuxize” password:
+
+	. The password is encrypted with SHA-512 (the password is truncated for better readability).
+	. The password was last changed on April 23, 2019 - 18009.
+	. There is no minimum password age.
+	. The password must be changed at least every 120 days.
+	. The user will receive a warning message seven days before the password expiration date.
+	. If the user doesn’t attempt to login to the system 14 days after the password is expired, the account will be disabled.
+	. There is no account expiration date.
+
+
+ 3. /etc/group
+    > tail /etc/group
+
+    # as user created, corresponding group created as well
+
+    > less /etc/group
+
+    # the command above will view group name and who's member in a specific group.
+
+
+
+
+# to add user in the system
+	> useradd -m -d /home/schnerg -u 1501 -g 66 -s /bin/bash schnerg
+		-m create home directory
+		-d </home/user directory name> define the home direcotry
+		-u <uid> or user id to sync up with LDAP
+		-g <gid> group id 
+		-s </bin/bash> define the default shell <if u didn't define /bin/bash the default shell will be empty in /etc/password and user will get what default shell in the system
+		- <user_name>
+
+	> useradd -m -d /home/schnerg  -s /bin/bash schnerg
+	> tail /etc/passwd
+	> tail /etc/shadow
+	> grep schnerg /etc/group
+	> ls /home
+	> ls /home/schnerg
+		# u may be see a file here like examples.desktop
+		# this file is coming from skel
+			> ls /etc/skel
+
+	# now we need to set password
+	> passwd <user_name>
+	> passwd schnerg
+
+# to view home directories
+	> ls /home
+
+# to lock user account 
+	> usermod -L <user_name>
+	> usermod -L schnerg
+
+# to unlock user account
+	> usermod -U <user_name>
+	> usermod -U schnerg
+
+# to delete user from the system
+	> userdel <user_name>
+	# keep in mind the directory home will not be removed
+	> grep schnerg /etc/passwd
+	> grep schnerg /etc/shadow
+	> grep schnerg /etc/group
+	> ls -lt /home  <-- if u take look on the user and group u will not see name u will see ids only.
+
+	# now we need to remove home directoy for schnerg
+	> rm -rf /home/schnerg/
+
+# to search for a preivous command in linux just press (ctrl+r), then type the command, if u press (ctrl+r) again u'll get next.
+
+# btw u can add user using script with command (newusers)
+
+
+# ---------------------------------------------------------------- BASH ------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
