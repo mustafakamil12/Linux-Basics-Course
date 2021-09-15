@@ -432,10 +432,11 @@ drwxrwxr-x  ==> it will be read like this    (d) 		(rwx)     (rwx)       (r-x)
 
 # btw u can add user using script with command (newusers)
 
+next must start with lesson 15
 
-# ---------------------------------------------------------------- BASH ------------------------------------------------------
+# ---------------------------------------------------------- BASH Scripting --------------------------------------------------
 
-
+# as it's mentinoed above it's bash because using bash command and scripting because we are going to use programs.
 
 
 
