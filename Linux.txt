@@ -183,7 +183,7 @@ root  home / user_name --> where the first slash is the root
 > cat <file_name> | uniq
 
 # u can use word count <wc> to get some information about the file like # of lines ..etc
-> wc <file_name>
+> wc <file_name> --> the result will contain newline, word, and byte counts for each file
 
 # grep is a searching, finding and filtiring tool
 > cat <file_name> | grep "something to search or filter"
@@ -324,7 +324,7 @@ drwxrwxr-x  ==> it will be read like this    (d) 		(rwx)     (rwx)       (r-x)
 	+----------------------------------------> 1. Username
 
 
-    1. Username. The string you type when you log into the system. The user account that exist on the system.
+  1. Username. The string you type when you log into the system. The user account that exist on the system.
 
 	2. Encrypted Password. The password is using the $type$salt$hashed format. $type is the method cryptographic hash algorithm and can have the following values:
 
@@ -363,7 +363,7 @@ drwxrwxr-x  ==> it will be read like this    (d) 		(rwx)     (rwx)       (r-x)
 	The entry above contains information about the user “linuxize” password:
 
 	. The password is encrypted with SHA-512 (the password is truncated for better readability).
-	. The password was last changed on April 23, 2019 - 18009.
+	. The password was last changed on April 23, 2019 - 18009.  > date -d @18009
 	. There is no minimum password age.
 	. The password must be changed at least every 120 days.
 	. The user will receive a warning message seven days before the password expiration date.
