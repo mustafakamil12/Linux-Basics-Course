@@ -438,8 +438,82 @@ next must start with lesson 15
 
 # as it's mentinoed above it's bash because using bash command and scripting because we are going to use programs.
 
+# the first thing u need to do 
+	> echo "Hello There!"
 
+# in the case above both stdout and stderr output to the command line, the same shell that we are in :)
 
+# now if we wanna to store something using echo we need to direct output to a file.
+	> echo "Hello There!" > hello.txt
+
+# remeber if we need to append lines we need to use >> instead of > 
+
+# now lets create a testfile and add some lines in it
+
+# we can check how many lines in a file using many ways, but we can use this one below:
+	> wc -l < testfile
+
+# let's group the commands above and see the result
+	> (cat testfile | wc -l)
+
+# let's try to add more statement to the line above
+	> (cat testfile | wc -l) && echo "Done!" 		<-- if the first part run successfully then the second part will be running.
+
+# let's take a look on the same line code above but replace && <and> with <or> ||
+	> (cat testfile | wc -l) || echo "Done!"		<-- if the first part run successfully or not the second part will be running.
+
+# The points above is just applying logic & and | to the script
+
+# when u redirect output of command using > u actually redirect stdout (1) or u can use 1> but if u wann to redirect errors use 2>
+
+# to define a variable in shell programming use $ and then variable name --> $variable
+
+# let's see how it's work, let's use one of the environment variable
+	> echo $HOME
+	# if u try to use the variable directly without using echo u'll get error coz linux will execute the contain of the variable
+	> $HOME   (Error) trying to execute like this --> -bash: /home/osboxes: Is a directory
+
+# let's take a look on the variable definition below
+	> myvar="This is so wonderful!"		<-- don't use any space in this line
+	> echo $myvar
+
+	> somenumber=6
+	> echo $somenumber
+
+	> some_number=10
+	>echo $some_number
+
+	# let's take a look on the lines below
+	> echo "My favorite number is $some_number"  							√
+	> echo "This is my $some_numberth cup of tea today..."  	x
+	> echo "This is my ${some_number}th cup of tea today..."  √
+
+# we used in the previous examples fixed # (10) now let's take a look on the line below
+	> echo "There are X of lines in the /etc/shadow file"
+	# now the question is how we can get the real number of the shadow file instead of X
+
+	> echo "There are `wc -l < /etc/group` of lines in the /etc/group file"
+	# using back tick ` ` in the string line that's mean there's command need to be executed
+
+	# we can play with execution command to assign it's output to variable
+	> num_directories=`ls $HOME | wc -l`
+	> echo $num_directories
+	> ls $HOME
+
+# now let's start to write an actual script
+
+# now let's check where's our bash binary located
+	> which bash
+
+# create a simple bash script with name helloworld.sh
+	#!/usr/bin/bash
+
+	#This is a comment
+	echo "Hello World!"
+
+	exit 0  <-- this mean there's not error counterd 
+
+# if we put exit only it will return the last executed line.
 
 
 
