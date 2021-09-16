@@ -505,15 +505,68 @@ next must start with lesson 15
 # now let's check where's our bash binary located
 	> which bash
 
-# create a simple bash script with name helloworld.sh
+# create a simple bash script with name helloworld.sh and the content is:
 	#!/usr/bin/bash
 
 	#This is a comment
 	echo "Hello World!"
 
-	exit 0  <-- this mean there's not error counterd 
+	exit 0
 
-# if we put exit only it will return the last executed line.
+# as any program or function we need to return something, to use return in bash script we will use exit.
+
+# we can use numbers form 0-255 as returning value.
+
+# as usual we using 0 as no issue or no problem return code
+
+# any value between 1-255 mean that there's an issue with code, we can define error codes in docs.
+
+# if we put exit only it will return the last functional command run.
+
+# if we use this combine letters ($?) it will return the last functional command run.
+
+# the script helloworld.sh will not work because of the permission, we need to add execute to it 
+	> chmod +x helloworld.sh
+	> ./helloworld.sh 
+	> bash helloworld.sh
+
+	# in the running case above if we try to echo any variable directly from terminal it will not working.
+
+	# we can use another technique by using source 
+	# source is take ur source code and execute it in the shell including ur variables.
+
+	> source helloworld.sh  <-- but we need to remove exit statement first.
+	# or we can use a shortcut by using dot
+	> . helloworld.sh
+
+	# the source technique above using with vpn for example to add all required variables to the active running bash.
+
+# let's creare another bash script file called arguments.sh
+	
+	#!/usr/bin/bash
+	
+	## Arguments reference:
+	# $# --> number of args that our script was run with
+	# $0 --> the filename of our script
+	# $1..$n --> script arguments
+	
+	# what's our filename?
+	ourfilename=$0
+	echo $ourfilename
+	
+	# how many arguments was the script
+	num_arguments=$#
+	echo $num_arguments
+	
+	# what were the arguments?
+	echo "The first three arguments were ${1}, ${2} and ${3}
+	echo $5"
+
+# now if we change the file mod to be executable and then we change the name of the file it will keep file att. as it.
+
+# bash script will not give you an error or notice, it's only give u blank
+
+
 
 
 
