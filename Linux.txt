@@ -566,6 +566,11 @@ next must start with lesson 15
 
 # bash script will not give you an error or notice, it's only give u blank
 
+# now let's take a look on if statement.
+	# the old way is to use 1 bracket and use one = for eauality.
+	# u must add space after first bracket and before the last bracket
+	# if we use $(...) that's mean run what ever within parentheses
+
 
 
 
