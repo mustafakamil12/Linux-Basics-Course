@@ -436,12 +436,12 @@ next must start with lesson 15
 
 # ---------------------------------------------------------- BASH Scripting --------------------------------------------------
 
-# as it's mentinoed above it's bash because using bash command and scripting because we are going to use programs.
+# as it's mentinoed above it's bash because using bash command and scripting because we are going to these commands in programs.
 
 # the first thing u need to do 
 	> echo "Hello There!"
 
-# in the case above both stdout and stderr output to the command line, the same shell that we are in :)
+# in the case above both stdout and stderr directed to the command line, the same shell that we are in :)
 
 # now if we wanna to store something using echo we need to direct output to a file.
 	> echo "Hello There!" > hello.txt
@@ -464,9 +464,9 @@ next must start with lesson 15
 
 # The points above is just applying logic & and | to the script
 
-# when u redirect output of command using > u actually redirect stdout (1) or u can use 1> but if u wann to redirect errors use 2>
+# when u redirect output of command using [>] u actually redirect stdout (1) or u can use 1> but if u wann to redirect errors use 2>
 
-# to define a variable in shell programming use $ and then variable name --> $variable
+# to define a variable in shell programming use variable name and we can call it by add ($) before variable  --> $variable
 
 # let's see how it's work, let's use one of the environment variable
 	> echo $HOME
@@ -595,6 +595,24 @@ next must start with lesson 15
 	# $? is the most recent foreground pipeline exit status.
 	# $! is the PID of the most recent background command.
 	# $0 is the name of the shell or shell script.
+
+# ----------------------------------------------------------- PATH IN BASH  --------------------------------------------------
+
+# let's take a look on sudo command, the question is how linux or bash understand what's sudo and where's sudo.
+# to understand how the process done in linux bash, bash will look in env. variable PATH to reach out to sudo.
+# let's take a look on the env. variable named $PATH which is like any other variable
+	> echo $PATH
+
+# the idea behind using PATH env. variable. is instead of using the full path with specific command we can use the command directly.
+	> /usr/bin/sudo  
+	> sudo
+
+# to append path of a binaray or application to env. path variable. 
+	> PATH=$PATH:/some/dir
+
+# to prepend to the path and let linux look for what u add first, root is the first thing that linux is looking for
+	> PATH=/root:$PATH
+
 
 
 
