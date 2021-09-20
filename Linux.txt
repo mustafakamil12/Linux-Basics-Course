@@ -434,6 +434,58 @@ drwxrwxr-x  ==> it will be read like this    (d) 		(rwx)     (rwx)       (r-x)
 
 next must start with lesson 15
 
+# --------------------------------------------------- Scheduling Tasks with Cron  --------------------------------------------
+
+# to schedul a task in linux we need to add this task to the crontab
+
+# to list or view what in the crontab use:
+	> crontab -l
+	no crontab for osboxes  <-- we got this because we dont' have anything in the crontab.
+
+# no to edit the crontab we are going to use 
+	> crontab -e
+
+# let's take a look on the crontab anatomy
+
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name  command to be executed
+
+# the user-name field available only in the system crontab --> /etc/crontab
+
+
+# if u use * in any of the fields above except the command, that's mean run always in that field. for ex if u place * in day of month that's mean it will run on daily basis.
+
+# let's do this for example:
+	*  *  *  *  * echo "hi there" >> /home/osboxes/hithere.txt
+
+# to see another crontabs and where they kept:
+	> ls /var/spool/cron/crontabs
+
+# there's another place as well crontab can keept in
+	> ls /etc/cron.d
+
+# also there's system crontab in:
+	> sudo nano /etc/crontab
+
+# we can use range in the fields for example 
+	15  10  1-10/2  *  5  echo "Hello There!" >> /home/osboxes/hithere.txt
+
+	# the range in the day of month field mean every 1 to 10 days of the monthe on each 2 days
+
+	# also u can use a list of days like 1,2,3,7
+
+
+# cron.allow work like white list as well cron.deny work like black list.
+
+# if you wanna to edit crontab for a user and u r sysadmin.	
+	> crontab -e -u osboxes
+
+
 # ---------------------------------------------------------- BASH Scripting --------------------------------------------------
 
 # as it's mentinoed above it's bash because using bash command and scripting because we are going to these commands in programs.
@@ -612,6 +664,15 @@ next must start with lesson 15
 
 # to prepend to the path and let linux look for what u add first, root is the first thing that linux is looking for
 	> PATH=/root:$PATH
+
+# one of the most important thing is how to modify the bash config file.
+	> ~/.bash_profile or .profile
+
+# anothe place to see is 
+	> vi /etc/profile
+	> vi /etc/profile.d
+
+
 
 
 
