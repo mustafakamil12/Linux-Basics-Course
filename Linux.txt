@@ -485,6 +485,21 @@ next must start with lesson 15
 # if you wanna to edit crontab for a user and u r sysadmin.	
 	> crontab -e -u osboxes
 
+# there's special list of chars. used in crontab: >/dev/null 2>&1
+
+	> is for redirect
+	
+	/dev/null is a black hole where any data sent, will be discarded
+	
+	2 is the file descriptor for Standard Error
+	
+	> is for redirect
+	
+	& is the symbol for file descriptor (without it, the following 1 would be considered a filename)
+	
+	1 is the file descriptor for Standard Out
+	
+	Therefore >/dev/null 2>&1 redirects the output of your program to /dev/null. Include both the Standard Error and Standard Out.
 
 # ---------------------------------------------------------- BASH Scripting --------------------------------------------------
 
