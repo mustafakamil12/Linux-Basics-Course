@@ -109,6 +109,9 @@ root  home / user_name --> where the first slash is the root
 > cp <source path/file> <destenation/file>
 > cp somefolder/test.txt ./testcopy.txt    <--- where the dot mean this folder and u can use it or not it's optional in this case.
 
+# to copy files without extensions
+> cp -- !(*.*) /new/path/
+
 # single dot mean this directory (.) duble dots mean the upper directory (..)
 
 # u need to learn 2 text editor at least 
